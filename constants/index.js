@@ -1,7 +1,7 @@
 const WHITELIST_CONTRACT_ADDRESS = "0xCd533CB3D4B29b74a63B8125c2f154A1cfF5326C";
-const METADATA_URL = "https://minter-app-ravinthiranpartheepan1407.vercel.app/api/";
+const METADATA_URL = "https://minted-dao-ravi.vercel.app/api/";
 
-export const abi = [
+const abi = [
   {
     "inputs": [
       {
@@ -583,6 +583,8 @@ export const abi = [
     "stateMutability": "payable",
     "type": "receive"
   }
-]
+];
 
-export const NFT_CONTRACT_ADDRESS = "0xE620402c12c41904C8f5621b544AEAD8cDDd9BfC"
+const NFT_CONTRACT_ADDRESS = "0x619F7dac46b1C9e4B05d3Db7688Ef366FD19F5E9";
+
+module.exports = { WHITELIST_CONTRACT_ADDRESS, METADATA_URL, abi, NFT_CONTRACT_ADDRESS };
