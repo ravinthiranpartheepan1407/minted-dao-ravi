@@ -5,7 +5,8 @@ import Web3Modal from "web3modal";
 import { abi, NFT_CONTRACT_ADDRESS } from "../constants";
 import { Contract, providers, utils } from "ethers";
 import React,{useEffect, useState, useRef} from "react";
-
+import Header from "./Header";
+import Footer from "./Footer";
 
 export default function Home() {
 
@@ -183,44 +184,48 @@ export default function Home() {
 
   const renderButton = () =>{
     if(!walletConnected){
-      return(<div><button onClick={connectWallet}>Connect Your Wallet</button></div>);
+      return(<div><button className="text-base bg-cyan-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={connectWallet}>Connect Your Wallet</button></div>);
     }
 
     if(loading){
-      return(<div><button>Loading...</button></div>);
+      return(<div><button className="text-base bg-cyan-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Loading...</button></div>);
     }
 
     if(isOwner && !presaleStarted){
-      return(<div><button onClick={startPresale}>Start Presale!</button></div>);
+      return(<div><button className="text-base bg-cyan-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={startPresale}>Start Presale!</button></div>);
     }
     if(!presaleStarted){
-      return(<div>Presale has not started yet!</div>);
+      return(<div className="text-2xl">Presale has not started yet!</div>);
     }
 
     if(presaleStarted && !presaleEnded){
       return(
         <div>
           <div>Presale Has Started!! If your address is whitelisted, Mint a AzogDev</div>
-          <button onClick={presaleMint}>Presale Mint</button>
+          <button className="text-base bg-cyan-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={presaleMint}>Presale Mint</button>
         </div>
       );
     }
 
     if(presaleStarted && presaleEnded){
       return(
-        <div>
-          <button onClick={publicMint}>Public Mint </button>
+        <div className="p-8 content-center">
+          <button className="text-base bg-cyan-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={publicMint}>Public Mint </button>
         </div>
       );
     }
   };
 
   return (
-    <div>
+    <div className="p-8">
+    <Header />
+    <div className="container text-2xl text-center p-8 text-white block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
       <div>
         {tokenIdsMinted} / 20 have been minted
       </div>
       {renderButton()}
+    </div>
+    <Footer />
     </div>
   );
 }
